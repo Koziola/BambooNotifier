@@ -1,0 +1,335 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		ABFEA66A2011A7B00092A2E9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFEA6692011A7B00092A2E9 /* AppDelegate.swift */; };
+		ABFEA66C2011A7B00092A2E9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFEA66B2011A7B00092A2E9 /* ViewController.swift */; };
+		ABFEA66F2011A7B00092A2E9 /* BambooNotifier.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = ABFEA66D2011A7B00092A2E9 /* BambooNotifier.xcdatamodeld */; };
+		ABFEA6712011A7B00092A2E9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ABFEA6702011A7B00092A2E9 /* Assets.xcassets */; };
+		ABFEA6742011A7B00092A2E9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ABFEA6722011A7B00092A2E9 /* Main.storyboard */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		ABFEA6662011A7B00092A2E9 /* BambooNotifier.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BambooNotifier.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		ABFEA6692011A7B00092A2E9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		ABFEA66B2011A7B00092A2E9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		ABFEA66E2011A7B00092A2E9 /* BambooNotifier.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BambooNotifier.xcdatamodel; sourceTree = "<group>"; };
+		ABFEA6702011A7B00092A2E9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		ABFEA6732011A7B00092A2E9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		ABFEA6752011A7B00092A2E9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ABFEA6762011A7B00092A2E9 /* BambooNotifier.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = BambooNotifier.entitlements; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		ABFEA6632011A7B00092A2E9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		ABFEA65D2011A7B00092A2E9 = {
+			isa = PBXGroup;
+			children = (
+				ABFEA6682011A7B00092A2E9 /* BambooNotifier */,
+				ABFEA6672011A7B00092A2E9 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		ABFEA6672011A7B00092A2E9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				ABFEA6662011A7B00092A2E9 /* BambooNotifier.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		ABFEA6682011A7B00092A2E9 /* BambooNotifier */ = {
+			isa = PBXGroup;
+			children = (
+				ABFEA6692011A7B00092A2E9 /* AppDelegate.swift */,
+				ABFEA66B2011A7B00092A2E9 /* ViewController.swift */,
+				ABFEA6702011A7B00092A2E9 /* Assets.xcassets */,
+				ABFEA6722011A7B00092A2E9 /* Main.storyboard */,
+				ABFEA6752011A7B00092A2E9 /* Info.plist */,
+				ABFEA6762011A7B00092A2E9 /* BambooNotifier.entitlements */,
+				ABFEA66D2011A7B00092A2E9 /* BambooNotifier.xcdatamodeld */,
+			);
+			path = BambooNotifier;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		ABFEA6652011A7B00092A2E9 /* BambooNotifier */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ABFEA6792011A7B00092A2E9 /* Build configuration list for PBXNativeTarget "BambooNotifier" */;
+			buildPhases = (
+				ABFEA6622011A7B00092A2E9 /* Sources */,
+				ABFEA6632011A7B00092A2E9 /* Frameworks */,
+				ABFEA6642011A7B00092A2E9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BambooNotifier;
+			productName = BambooNotifier;
+			productReference = ABFEA6662011A7B00092A2E9 /* BambooNotifier.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		ABFEA65E2011A7B00092A2E9 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0920;
+				LastUpgradeCheck = 0920;
+				ORGANIZATIONNAME = "Adam Koziol";
+				TargetAttributes = {
+					ABFEA6652011A7B00092A2E9 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = ABFEA6612011A7B00092A2E9 /* Build configuration list for PBXProject "BambooNotifier" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = ABFEA65D2011A7B00092A2E9;
+			productRefGroup = ABFEA6672011A7B00092A2E9 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				ABFEA6652011A7B00092A2E9 /* BambooNotifier */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		ABFEA6642011A7B00092A2E9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ABFEA6712011A7B00092A2E9 /* Assets.xcassets in Resources */,
+				ABFEA6742011A7B00092A2E9 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		ABFEA6622011A7B00092A2E9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ABFEA66C2011A7B00092A2E9 /* ViewController.swift in Sources */,
+				ABFEA66A2011A7B00092A2E9 /* AppDelegate.swift in Sources */,
+				ABFEA66F2011A7B00092A2E9 /* BambooNotifier.xcdatamodeld in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		ABFEA6722011A7B00092A2E9 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				ABFEA6732011A7B00092A2E9 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		ABFEA6772011A7B00092A2E9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		ABFEA6782011A7B00092A2E9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+			};
+			name = Release;
+		};
+		ABFEA67A2011A7B00092A2E9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = BambooNotifier/BambooNotifier.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = C2SE2G379B;
+				INFOPLIST_FILE = BambooNotifier/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = koziola.BambooNotifier;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Debug;
+		};
+		ABFEA67B2011A7B00092A2E9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = BambooNotifier/BambooNotifier.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = C2SE2G379B;
+				INFOPLIST_FILE = BambooNotifier/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = koziola.BambooNotifier;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		ABFEA6612011A7B00092A2E9 /* Build configuration list for PBXProject "BambooNotifier" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ABFEA6772011A7B00092A2E9 /* Debug */,
+				ABFEA6782011A7B00092A2E9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ABFEA6792011A7B00092A2E9 /* Build configuration list for PBXNativeTarget "BambooNotifier" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ABFEA67A2011A7B00092A2E9 /* Debug */,
+				ABFEA67B2011A7B00092A2E9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		ABFEA66D2011A7B00092A2E9 /* BambooNotifier.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				ABFEA66E2011A7B00092A2E9 /* BambooNotifier.xcdatamodel */,
+			);
+			currentVersion = ABFEA66E2011A7B00092A2E9 /* BambooNotifier.xcdatamodel */;
+			path = BambooNotifier.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = ABFEA65E2011A7B00092A2E9 /* Project object */;
+}
