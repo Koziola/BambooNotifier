@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		ABFC7FD22011B37F00B1644C /* RefreshTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFC7FD12011B37F00B1644C /* RefreshTimer.swift */; };
 		ABFEA66A2011A7B00092A2E9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFEA6692011A7B00092A2E9 /* AppDelegate.swift */; };
 		ABFEA66C2011A7B00092A2E9 /* NotifierViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFEA66B2011A7B00092A2E9 /* NotifierViewController.swift */; };
 		ABFEA66F2011A7B00092A2E9 /* BambooNotifier.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = ABFEA66D2011A7B00092A2E9 /* BambooNotifier.xcdatamodeld */; };
@@ -15,6 +16,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		ABFC7FD12011B37F00B1644C /* RefreshTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshTimer.swift; sourceTree = "<group>"; };
 		ABFEA6662011A7B00092A2E9 /* BambooNotifier.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BambooNotifier.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABFEA6692011A7B00092A2E9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ABFEA66B2011A7B00092A2E9 /* NotifierViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotifierViewController.swift; sourceTree = "<group>"; };
@@ -36,6 +38,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		ABFC7FD32011B3CD00B1644C /* Refresh */ = {
+			isa = PBXGroup;
+			children = (
+				ABFC7FD12011B37F00B1644C /* RefreshTimer.swift */,
+			);
+			path = Refresh;
+			sourceTree = "<group>";
+		};
 		ABFEA65D2011A7B00092A2E9 = {
 			isa = PBXGroup;
 			children = (
@@ -55,6 +65,7 @@
 		ABFEA6682011A7B00092A2E9 /* BambooNotifier */ = {
 			isa = PBXGroup;
 			children = (
+				ABFC7FD32011B3CD00B1644C /* Refresh */,
 				ABFEA6692011A7B00092A2E9 /* AppDelegate.swift */,
 				ABFEA66B2011A7B00092A2E9 /* NotifierViewController.swift */,
 				ABFEA6702011A7B00092A2E9 /* Assets.xcassets */,
@@ -138,6 +149,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				ABFEA66C2011A7B00092A2E9 /* NotifierViewController.swift in Sources */,
+				ABFC7FD22011B37F00B1644C /* RefreshTimer.swift in Sources */,
 				ABFEA66A2011A7B00092A2E9 /* AppDelegate.swift in Sources */,
 				ABFEA66F2011A7B00092A2E9 /* BambooNotifier.xcdatamodeld in Sources */,
 			);

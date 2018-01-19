@@ -12,7 +12,6 @@ class NotifierViewController: NSViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
     }
 
@@ -21,8 +20,6 @@ class NotifierViewController: NSViewController {
         // Update the view, if already loaded.
         }
     }
-
-
 }
 
 extension NotifierViewController {
