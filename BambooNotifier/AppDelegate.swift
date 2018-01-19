@@ -12,14 +12,29 @@ import Cocoa
 class AppDelegate: NSObject, NSApplicationDelegate {
 
     let notifierStatusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
-
+    let notifierPopover = NSPopover()
+    
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
         setStatusItemImage()
+        setStatusItemAction()
     }
 
     fileprivate func setStatusItemImage(){
         notifierStatusItem.image = NSImage(named: NSImage.Name("logoBambooPNG"))
+    }
+    
+    fileprivate func setStatusItemAction(){
+        notifierStatusItem.action = #selector(toggleNotifierPopover(_:))
+    }
+    
+    @objc func toggleNotifierPopover(_ sender: Any?){
+        if (notifierPopover.isShown){
+            notifierPopover.close()
+        } else if let button = notifierStatusItem.button {
+            notifierPopover.contentViewController = NotifierViewController.freshController()
+            notifierPopover.show(relativeTo: button.bounds, of: button, preferredEdge: .minY)
+        }
     }
     
     func applicationWillTerminate(_ aNotification: Notification) {
