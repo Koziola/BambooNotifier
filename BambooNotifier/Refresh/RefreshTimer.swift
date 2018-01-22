@@ -13,7 +13,7 @@ class RefreshTimer {
     static let REFRESH_TIMER_NOTIFICATION = "RefreshTimer"
     
     init(){
-        refreshInterval = 60
+        refreshInterval = 5
         restartTimer()
     }
     
@@ -23,7 +23,7 @@ class RefreshTimer {
         }
     }
     
-    private func restartTimer(){
+    func restartTimer(){
         timer.invalidate()
         timer = Timer.scheduledTimer(timeInterval: refreshInterval, target: self, selector: #selector(doTimerFired(_:)), userInfo: nil, repeats: true)
     }
