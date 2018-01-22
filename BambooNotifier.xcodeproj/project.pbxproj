@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5FDA143FE65AD4728268329D /* Pods_BambooNotifier.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CE917624D3432DA8EF874C3 /* Pods_BambooNotifier.framework */; };
 		ABFC7FD22011B37F00B1644C /* RefreshTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFC7FD12011B37F00B1644C /* RefreshTimer.swift */; };
+		ABFC7FEC201685BF00B1644C /* RSSSubscriber.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFC7FEB201685BF00B1644C /* RSSSubscriber.swift */; };
 		ABFEA66A2011A7B00092A2E9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFEA6692011A7B00092A2E9 /* AppDelegate.swift */; };
 		ABFEA66C2011A7B00092A2E9 /* NotifierViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFEA66B2011A7B00092A2E9 /* NotifierViewController.swift */; };
 		ABFEA66F2011A7B00092A2E9 /* BambooNotifier.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = ABFEA66D2011A7B00092A2E9 /* BambooNotifier.xcdatamodeld */; };
@@ -16,7 +18,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		04344A498653B09A27159ACF /* Pods-BambooNotifier.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BambooNotifier.release.xcconfig"; path = "Pods/Target Support Files/Pods-BambooNotifier/Pods-BambooNotifier.release.xcconfig"; sourceTree = "<group>"; };
+		2CE917624D3432DA8EF874C3 /* Pods_BambooNotifier.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BambooNotifier.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		685EA8ADEB411643431A10E0 /* Pods-BambooNotifier.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BambooNotifier.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BambooNotifier/Pods-BambooNotifier.debug.xcconfig"; sourceTree = "<group>"; };
 		ABFC7FD12011B37F00B1644C /* RefreshTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshTimer.swift; sourceTree = "<group>"; };
+		ABFC7FEB201685BF00B1644C /* RSSSubscriber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSSubscriber.swift; sourceTree = "<group>"; };
 		ABFEA6662011A7B00092A2E9 /* BambooNotifier.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BambooNotifier.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABFEA6692011A7B00092A2E9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ABFEA66B2011A7B00092A2E9 /* NotifierViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotifierViewController.swift; sourceTree = "<group>"; };
@@ -32,12 +38,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5FDA143FE65AD4728268329D /* Pods_BambooNotifier.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		711E6D5EAEAA22434178F885 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2CE917624D3432DA8EF874C3 /* Pods_BambooNotifier.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		ABFC7FD32011B3CD00B1644C /* Refresh */ = {
 			isa = PBXGroup;
 			children = (
@@ -46,11 +61,21 @@
 			path = Refresh;
 			sourceTree = "<group>";
 		};
+		ABFC7FEA201685B000B1644C /* RSS */ = {
+			isa = PBXGroup;
+			children = (
+				ABFC7FEB201685BF00B1644C /* RSSSubscriber.swift */,
+			);
+			path = RSS;
+			sourceTree = "<group>";
+		};
 		ABFEA65D2011A7B00092A2E9 = {
 			isa = PBXGroup;
 			children = (
 				ABFEA6682011A7B00092A2E9 /* BambooNotifier */,
 				ABFEA6672011A7B00092A2E9 /* Products */,
+				CD17AD6E21F27F0C35F424EC /* Pods */,
+				711E6D5EAEAA22434178F885 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -65,6 +90,7 @@
 		ABFEA6682011A7B00092A2E9 /* BambooNotifier */ = {
 			isa = PBXGroup;
 			children = (
+				ABFC7FEA201685B000B1644C /* RSS */,
 				ABFC7FD32011B3CD00B1644C /* Refresh */,
 				ABFEA6692011A7B00092A2E9 /* AppDelegate.swift */,
 				ABFEA66B2011A7B00092A2E9 /* NotifierViewController.swift */,
@@ -77,6 +103,15 @@
 			path = BambooNotifier;
 			sourceTree = "<group>";
 		};
+		CD17AD6E21F27F0C35F424EC /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				685EA8ADEB411643431A10E0 /* Pods-BambooNotifier.debug.xcconfig */,
+				04344A498653B09A27159ACF /* Pods-BambooNotifier.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -84,9 +119,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = ABFEA6792011A7B00092A2E9 /* Build configuration list for PBXNativeTarget "BambooNotifier" */;
 			buildPhases = (
+				662CCAB6EE7C602CECBCA7A4 /* [CP] Check Pods Manifest.lock */,
 				ABFEA6622011A7B00092A2E9 /* Sources */,
 				ABFEA6632011A7B00092A2E9 /* Frameworks */,
 				ABFEA6642011A7B00092A2E9 /* Resources */,
+				A2E51D9EB209E29662F0B630 /* [CP] Embed Pods Frameworks */,
+				7ECD8106BEE537BFC4B17BB4 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -143,6 +181,60 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		662CCAB6EE7C602CECBCA7A4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BambooNotifier-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7ECD8106BEE537BFC4B17BB4 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BambooNotifier/Pods-BambooNotifier-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A2E51D9EB209E29662F0B630 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-BambooNotifier/Pods-BambooNotifier-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/FeedKit/FeedKit.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FeedKit.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BambooNotifier/Pods-BambooNotifier-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		ABFEA6622011A7B00092A2E9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -152,6 +244,7 @@
 				ABFC7FD22011B37F00B1644C /* RefreshTimer.swift in Sources */,
 				ABFEA66A2011A7B00092A2E9 /* AppDelegate.swift in Sources */,
 				ABFEA66F2011A7B00092A2E9 /* BambooNotifier.xcdatamodeld in Sources */,
+				ABFC7FEC201685BF00B1644C /* RSSSubscriber.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,6 +370,7 @@
 		};
 		ABFEA67A2011A7B00092A2E9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 685EA8ADEB411643431A10E0 /* Pods-BambooNotifier.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = BambooNotifier/BambooNotifier.entitlements;
@@ -293,6 +387,7 @@
 		};
 		ABFEA67B2011A7B00092A2E9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 04344A498653B09A27159ACF /* Pods-BambooNotifier.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = BambooNotifier/BambooNotifier.entitlements;

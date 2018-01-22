@@ -14,12 +14,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let notifierStatusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
     let notifierPopover = NSPopover()
     var refreshTimer : RefreshTimer = RefreshTimer()
+    var feeds : [RSSSubscriber] = []
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
         setStatusItemImage()
         setStatusItemAction()
-        subscribeToRefresh()
+        addFeeds()
     }
 
     fileprivate func setStatusItemImage(){
@@ -30,6 +31,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         notifierStatusItem.action = #selector(toggleNotifierPopover(_:))
     }
     
+    private func addFeeds(){
+        //for testing & debugging
+        let rssURL = URL(string: "http://images.apple.com/main/rss/hotnews/hotnews.rss")!
+        if let rssFeed = RSSSubscriber.createSubscriber(feedURL: rssURL, refreshTimer: refreshTimer) {
+            feeds.append(rssFeed)
+        }
+    }
+    
     @objc func toggleNotifierPopover(_ sender: Any?){
         if (notifierPopover.isShown){
             notifierPopover.close()
@@ -37,14 +46,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             notifierPopover.contentViewController = NotifierViewController.freshController()
             notifierPopover.show(relativeTo: button.bounds, of: button, preferredEdge: .minY)
         }
-    }
-    
-    private func subscribeToRefresh(){
-        NotificationCenter.default.addObserver(self, selector: #selector(doRefresh(_:)), name: Notification.Name(RefreshTimer.REFRESH_TIMER_NOTIFICATION), object: refreshTimer)
-    }
-    
-    @objc func doRefresh(_ sender: Any?){
-        print("do Refresh")
     }
     
     func applicationWillTerminate(_ aNotification: Notification) {

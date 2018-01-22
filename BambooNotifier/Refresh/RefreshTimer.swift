@@ -13,7 +13,7 @@ class RefreshTimer {
     static let REFRESH_TIMER_NOTIFICATION = "RefreshTimer"
     
     init(){
-        refreshInterval = 5
+        refreshInterval = 20
         restartTimer()
     }
     
