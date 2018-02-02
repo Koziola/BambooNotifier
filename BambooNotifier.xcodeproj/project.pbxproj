@@ -11,7 +11,6 @@
 		AB8B657020251C45003EB7BD /* BambooAPIResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8B656F20251C45003EB7BD /* BambooAPIResource.swift */; };
 		AB8B657220251DEF003EB7BD /* BambooProjectResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8B657120251DEF003EB7BD /* BambooProjectResource.swift */; };
 		AB8B6574202522C7003EB7BD /* BambooAPIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8B6573202522C7003EB7BD /* BambooAPIRequest.swift */; };
-		ABC6112420195140007372F4 /* BambooAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC6112320195140007372F4 /* BambooAPI.swift */; };
 		ABC61126201BECD2007372F4 /* BambooPlanBranch.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC61125201BECD2007372F4 /* BambooPlanBranch.swift */; };
 		ABC61128201BEEDC007372F4 /* BambooPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC61127201BEEDC007372F4 /* BambooPlan.swift */; };
 		ABC6112A201BEF7D007372F4 /* BambooProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC61129201BEF7D007372F4 /* BambooProject.swift */; };
@@ -33,7 +32,6 @@
 		AB8B656F20251C45003EB7BD /* BambooAPIResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BambooAPIResource.swift; sourceTree = "<group>"; };
 		AB8B657120251DEF003EB7BD /* BambooProjectResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BambooProjectResource.swift; sourceTree = "<group>"; };
 		AB8B6573202522C7003EB7BD /* BambooAPIRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BambooAPIRequest.swift; sourceTree = "<group>"; };
-		ABC6112320195140007372F4 /* BambooAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BambooAPI.swift; sourceTree = "<group>"; };
 		ABC61125201BECD2007372F4 /* BambooPlanBranch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BambooPlanBranch.swift; sourceTree = "<group>"; };
 		ABC61127201BEEDC007372F4 /* BambooPlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BambooPlan.swift; sourceTree = "<group>"; };
 		ABC61129201BEF7D007372F4 /* BambooProject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BambooProject.swift; sourceTree = "<group>"; };
@@ -74,7 +72,6 @@
 		ABC611222019512E007372F4 /* BambooModel */ = {
 			isa = PBXGroup;
 			children = (
-				ABC6112320195140007372F4 /* BambooAPI.swift */,
 				ABC61125201BECD2007372F4 /* BambooPlanBranch.swift */,
 				ABC61127201BEEDC007372F4 /* BambooPlan.swift */,
 				ABC61129201BEF7D007372F4 /* BambooProject.swift */,
@@ -280,7 +277,6 @@
 				ABFC7FD22011B37F00B1644C /* RefreshTimer.swift in Sources */,
 				ABFEA66A2011A7B00092A2E9 /* AppDelegate.swift in Sources */,
 				ABE40D7A2024FB9D00E66047 /* BambooProjectService.swift in Sources */,
-				ABC6112420195140007372F4 /* BambooAPI.swift in Sources */,
 				ABFC7FEE2016A3EC00B1644C /* NotifierModel.swift in Sources */,
 				ABC61126201BECD2007372F4 /* BambooPlanBranch.swift in Sources */,
 				AB8B6574202522C7003EB7BD /* BambooAPIRequest.swift in Sources */,
