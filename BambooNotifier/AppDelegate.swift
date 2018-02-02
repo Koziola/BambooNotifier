@@ -20,7 +20,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // Insert code here to initialize your application
         setStatusItemImage()
         setStatusItemAction()
-        addFeeds()
+//        addFeeds()
     }
 
     fileprivate func setStatusItemImage(){
@@ -43,7 +43,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if (notifierPopover.isShown){
             notifierPopover.close()
         } else if let button = notifierStatusItem.button {
-            notifierPopover.contentViewController = NotifierViewController.freshController()
+            //TODO: Pass in NotifierModel object
+            notifierPopover.contentViewController = NotifierViewController.freshController(model: nil)
             notifierPopover.show(relativeTo: button.bounds, of: button, preferredEdge: .minY)
         }
     }

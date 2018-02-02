@@ -8,8 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		5FDA143FE65AD4728268329D /* Pods_BambooNotifier.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CE917624D3432DA8EF874C3 /* Pods_BambooNotifier.framework */; };
+		ABC6112420195140007372F4 /* BambooAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC6112320195140007372F4 /* BambooAPI.swift */; };
+		ABC61126201BECD2007372F4 /* BambooPlanBranch.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC61125201BECD2007372F4 /* BambooPlanBranch.swift */; };
+		ABC61128201BEEDC007372F4 /* BambooPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC61127201BEEDC007372F4 /* BambooPlan.swift */; };
+		ABC6112A201BEF7D007372F4 /* BambooProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC61129201BEF7D007372F4 /* BambooProject.swift */; };
+		ABE40D7A2024FB9D00E66047 /* BambooProjectService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE40D792024FB9D00E66047 /* BambooProjectService.swift */; };
 		ABFC7FD22011B37F00B1644C /* RefreshTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFC7FD12011B37F00B1644C /* RefreshTimer.swift */; };
 		ABFC7FEC201685BF00B1644C /* RSSSubscriber.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFC7FEB201685BF00B1644C /* RSSSubscriber.swift */; };
+		ABFC7FEE2016A3EC00B1644C /* NotifierModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFC7FED2016A3EC00B1644C /* NotifierModel.swift */; };
 		ABFEA66A2011A7B00092A2E9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFEA6692011A7B00092A2E9 /* AppDelegate.swift */; };
 		ABFEA66C2011A7B00092A2E9 /* NotifierViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFEA66B2011A7B00092A2E9 /* NotifierViewController.swift */; };
 		ABFEA66F2011A7B00092A2E9 /* BambooNotifier.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = ABFEA66D2011A7B00092A2E9 /* BambooNotifier.xcdatamodeld */; };
@@ -21,8 +27,14 @@
 		04344A498653B09A27159ACF /* Pods-BambooNotifier.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BambooNotifier.release.xcconfig"; path = "Pods/Target Support Files/Pods-BambooNotifier/Pods-BambooNotifier.release.xcconfig"; sourceTree = "<group>"; };
 		2CE917624D3432DA8EF874C3 /* Pods_BambooNotifier.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BambooNotifier.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		685EA8ADEB411643431A10E0 /* Pods-BambooNotifier.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BambooNotifier.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BambooNotifier/Pods-BambooNotifier.debug.xcconfig"; sourceTree = "<group>"; };
+		ABC6112320195140007372F4 /* BambooAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BambooAPI.swift; sourceTree = "<group>"; };
+		ABC61125201BECD2007372F4 /* BambooPlanBranch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BambooPlanBranch.swift; sourceTree = "<group>"; };
+		ABC61127201BEEDC007372F4 /* BambooPlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BambooPlan.swift; sourceTree = "<group>"; };
+		ABC61129201BEF7D007372F4 /* BambooProject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BambooProject.swift; sourceTree = "<group>"; };
+		ABE40D792024FB9D00E66047 /* BambooProjectService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BambooProjectService.swift; sourceTree = "<group>"; };
 		ABFC7FD12011B37F00B1644C /* RefreshTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshTimer.swift; sourceTree = "<group>"; };
 		ABFC7FEB201685BF00B1644C /* RSSSubscriber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSSubscriber.swift; sourceTree = "<group>"; };
+		ABFC7FED2016A3EC00B1644C /* NotifierModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotifierModel.swift; sourceTree = "<group>"; };
 		ABFEA6662011A7B00092A2E9 /* BambooNotifier.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BambooNotifier.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ABFEA6692011A7B00092A2E9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ABFEA66B2011A7B00092A2E9 /* NotifierViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotifierViewController.swift; sourceTree = "<group>"; };
@@ -51,6 +63,18 @@
 				2CE917624D3432DA8EF874C3 /* Pods_BambooNotifier.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		ABC611222019512E007372F4 /* BambooModel */ = {
+			isa = PBXGroup;
+			children = (
+				ABC6112320195140007372F4 /* BambooAPI.swift */,
+				ABC61125201BECD2007372F4 /* BambooPlanBranch.swift */,
+				ABC61127201BEEDC007372F4 /* BambooPlan.swift */,
+				ABC61129201BEF7D007372F4 /* BambooProject.swift */,
+				ABE40D792024FB9D00E66047 /* BambooProjectService.swift */,
+			);
+			path = BambooModel;
 			sourceTree = "<group>";
 		};
 		ABFC7FD32011B3CD00B1644C /* Refresh */ = {
@@ -90,10 +114,12 @@
 		ABFEA6682011A7B00092A2E9 /* BambooNotifier */ = {
 			isa = PBXGroup;
 			children = (
+				ABC611222019512E007372F4 /* BambooModel */,
 				ABFC7FEA201685B000B1644C /* RSS */,
 				ABFC7FD32011B3CD00B1644C /* Refresh */,
 				ABFEA6692011A7B00092A2E9 /* AppDelegate.swift */,
 				ABFEA66B2011A7B00092A2E9 /* NotifierViewController.swift */,
+				ABFC7FED2016A3EC00B1644C /* NotifierModel.swift */,
 				ABFEA6702011A7B00092A2E9 /* Assets.xcassets */,
 				ABFEA6722011A7B00092A2E9 /* Main.storyboard */,
 				ABFEA6752011A7B00092A2E9 /* Info.plist */,
@@ -241,10 +267,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				ABFEA66C2011A7B00092A2E9 /* NotifierViewController.swift in Sources */,
+				ABC61128201BEEDC007372F4 /* BambooPlan.swift in Sources */,
 				ABFC7FD22011B37F00B1644C /* RefreshTimer.swift in Sources */,
 				ABFEA66A2011A7B00092A2E9 /* AppDelegate.swift in Sources */,
+				ABE40D7A2024FB9D00E66047 /* BambooProjectService.swift in Sources */,
+				ABC6112420195140007372F4 /* BambooAPI.swift in Sources */,
+				ABFC7FEE2016A3EC00B1644C /* NotifierModel.swift in Sources */,
+				ABC61126201BECD2007372F4 /* BambooPlanBranch.swift in Sources */,
 				ABFEA66F2011A7B00092A2E9 /* BambooNotifier.xcdatamodeld in Sources */,
 				ABFC7FEC201685BF00B1644C /* RSSSubscriber.swift in Sources */,
+				ABC6112A201BEF7D007372F4 /* BambooProject.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
