@@ -13,6 +13,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     let notifierStatusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
     let notifierPopover = NSPopover()
+    let notifierModel = NotifierModel()
     var refreshTimer : RefreshTimer = RefreshTimer()
     var feeds : [RSSSubscriber] = []
     
@@ -44,7 +45,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             notifierPopover.close()
         } else if let button = notifierStatusItem.button {
             //TODO: Pass in NotifierModel object
-            notifierPopover.contentViewController = NotifierViewController.freshController(model: nil)
+            notifierPopover.contentViewController = NotifierViewController.freshController(model: notifierModel)
             notifierPopover.show(relativeTo: button.bounds, of: button, preferredEdge: .minY)
         }
     }

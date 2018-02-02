@@ -11,9 +11,9 @@
 import Foundation
 
 class NotifierModel{
-    let bambooInstanceRootURL : URL
+    var bambooInstanceRootURL : URL?
     
-    init(bambooRootURL : URL){
-        self.bambooInstanceRootURL = bambooRootURL
+    init() {
+        bambooInstanceRootURL = nil
     }
 }

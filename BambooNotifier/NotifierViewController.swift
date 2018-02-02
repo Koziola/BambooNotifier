@@ -24,6 +24,7 @@ class NotifierViewController: NSViewController {
     @objc func doInstanceURLChanged(_ sender: Any?){
         if let newURL = createURLFromString(urlString: instanceURLField.stringValue){
             print ("New valid URL: \(newURL.absoluteString)")
+            notifierModel!.bambooInstanceRootURL = newURL
             let projectResource = BambooAPIRequest<BambooProjectResource>(basePath: newURL, resource: BambooProjectResource())
             projectResource.load(success: {projects in
                 print(projects?.count)
@@ -44,7 +45,7 @@ class NotifierViewController: NSViewController {
     
     override func viewWillAppear() {
         super.viewWillAppear()
-        instanceURLField.stringValue = notifierModel?.bambooInstanceRootURL.absoluteString ?? ""
+        instanceURLField.stringValue = notifierModel?.bambooInstanceRootURL?.absoluteString ?? ""
     }
 
     override var representedObject: Any? {
@@ -56,7 +57,7 @@ class NotifierViewController: NSViewController {
 
 extension NotifierViewController {
     // MARK: Storyboard instantiation
-    static func freshController(model : NotifierModel?) -> NotifierViewController {
+    static func freshController(model : NotifierModel) -> NotifierViewController {
         let storyboard = NSStoryboard(name: NSStoryboard.Name(rawValue: "Main"), bundle: nil)
         let identifier = NSStoryboard.SceneIdentifier(rawValue: "NotifierViewController")
         guard let viewcontroller = storyboard.instantiateController(withIdentifier: identifier) as? NotifierViewController else {
