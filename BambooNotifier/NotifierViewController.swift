@@ -24,9 +24,9 @@ class NotifierViewController: NSViewController {
     @objc func doInstanceURLChanged(_ sender: Any?){
         if let newURL = createURLFromString(urlString: instanceURLField.stringValue){
             print ("New valid URL: \(newURL.absoluteString)")
-            let api = BambooAPI(instanceBaseAddress: newURL)
-            api.getListOfProjects(success: {projects in
-                print(projects.count)
+            let projectResource = BambooAPIRequest<BambooProjectResource>(basePath: newURL, resource: BambooProjectResource())
+            projectResource.load(success: {projects in
+                print(projects?.count)
             }, fail: {errString in
                 print(errString)
             })
