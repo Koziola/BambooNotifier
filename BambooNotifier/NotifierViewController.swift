@@ -46,6 +46,9 @@ class NotifierViewController: NSViewController {
     override func viewWillAppear() {
         super.viewWillAppear()
         instanceURLField.stringValue = notifierModel?.bambooInstanceRootURL?.absoluteString ?? ""
+        if instanceURLField.stringValue != ""{
+            instanceURLField.refusesFirstResponder = true
+        }
     }
 
     override var representedObject: Any? {
