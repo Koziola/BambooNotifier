@@ -13,12 +13,14 @@ struct BambooProject: Codable {
     let key : String
     //name of the project
     let name : String
-//    //unique key for the project
-//    let projectKey : String
-//    //human-readable name for the project
-//    let projectName : String
-//    //list of plans for the project
-//    let plans : [BambooPlan]?
-//    //direct link to the project
-//    let link : String
+    //direct link to the project
+    let link : BambooLink
+    
+    //MARK: Optional Fields
+    //unique key for the project
+    let projectKey : String?
+    //human-readable name for the project
+    let projectName : String?
+    //list of plans for the project
+    let plans : [BambooPlan]?
 }

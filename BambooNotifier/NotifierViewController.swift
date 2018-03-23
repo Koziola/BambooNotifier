@@ -52,7 +52,6 @@ class NotifierViewController: NSViewController, NSBrowserDelegate {
     private func configureInstanceURLField() {
         instanceURLField.placeholderString = "None"
         instanceURLField.action = #selector(doInstanceURLChanged(_:))
-//        instanceURLField.backgroundColor = .controlBackgroundColor
     }
     
     private func configureBrowser(){
@@ -82,8 +81,16 @@ class NotifierViewController: NSViewController, NSBrowserDelegate {
     }
 
     func browser(_ sender: NSBrowser, willDisplayCell cell: Any, atRow row: Int, column: Int) {
-        //dunno what to do here
-        (cell as! NSBrowserCell).title = notifierModel!.projectList[row].name
+        let browserCell = cell as! NSBrowserCell
+        guard let selectedProject = notifierModel?.projectList[row] else {
+            return
+        }
+        switch column {
+        case 0:
+            browserCell.title = selectedProject.name
+        default:
+            browserCell.title = "Unknown"
+        }
     }
 
     func browser(_ sender: NSBrowser, numberOfRowsInColumn column: Int) -> Int {
