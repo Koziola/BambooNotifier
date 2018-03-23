@@ -8,17 +8,19 @@
 
 import Cocoa
 
-class NotifierViewController: NSViewController {
+class NotifierViewController: NSViewController, NSBrowserDelegate {
 
     var notifierModel : NotifierModel? = nil
     
     @IBOutlet var instanceURLField: NSTextField!
+    @IBOutlet var bambooBrowser: NSBrowser!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        instanceURLField.placeholderString = "None"
-        instanceURLField.action = #selector(doInstanceURLChanged(_:))
+        configureInstanceURLField()
+
+        configureBrowser()
     }
     
     @objc func doInstanceURLChanged(_ sender: Any?){
@@ -28,6 +30,10 @@ class NotifierViewController: NSViewController {
             let projectResource = BambooAPIRequest<BambooProjectResource>(basePath: newURL, resource: BambooProjectResource())
             projectResource.load(success: {projects in
                 print(projects?.count)
+                self.notifierModel?.projectList = projects!
+                DispatchQueue.main.async {
+                    self.bambooBrowser.reloadColumn(0)
+                }
             }, fail: {errString in
                 print(errString)
             })
@@ -43,6 +49,18 @@ class NotifierViewController: NSViewController {
         return nil
     }
     
+    private func configureInstanceURLField() {
+        instanceURLField.placeholderString = "None"
+        instanceURLField.action = #selector(doInstanceURLChanged(_:))
+//        instanceURLField.backgroundColor = .controlBackgroundColor
+    }
+    
+    private func configureBrowser(){
+        bambooBrowser.backgroundColor = .clear
+        bambooBrowser.autohidesScroller = true
+        bambooBrowser.delegate = self
+    }
+    
     override func viewWillAppear() {
         super.viewWillAppear()
         instanceURLField.stringValue = notifierModel?.bambooInstanceRootURL?.absoluteString ?? ""
@@ -55,6 +73,21 @@ class NotifierViewController: NSViewController {
         didSet {
         // Update the view, if already loaded.
         }
+    }
+    
+    
+//     MARK: Browser View Data Source
+    func rootItem(for browser: NSBrowser) -> Any? {
+        return notifierModel?.projectList
+    }
+
+    func browser(_ sender: NSBrowser, willDisplayCell cell: Any, atRow row: Int, column: Int) {
+        //dunno what to do here
+        (cell as! NSBrowserCell).title = notifierModel!.projectList[row].name
+    }
+
+    func browser(_ sender: NSBrowser, numberOfRowsInColumn column: Int) -> Int {
+        return notifierModel!.projectList.count
     }
 }
 

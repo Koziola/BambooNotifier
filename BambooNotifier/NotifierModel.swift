@@ -12,8 +12,9 @@ import Foundation
 
 class NotifierModel{
     var bambooInstanceRootURL : URL?
-    
+    var projectList : [BambooProject]
     init() {
         bambooInstanceRootURL = nil
+        projectList = []
     }
 }
