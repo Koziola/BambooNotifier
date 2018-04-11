@@ -48,8 +48,15 @@ class BambooAPIRequest<Resource : BambooAPIResource>{
         }
         var subPath = apiPath
         subPath += resource.resourcePath
+        if resource.detailPath != nil {
+            subPath += "/\(resource.detailPath!)"
+        }
         subPath += jsonEXT
         components.path = subPath
+        
+        if resource.expandPath != nil {
+            components.queryItems = [URLQueryItem(name: "expand", value: resource.expandPath)]
+        }
         
         return components.url
     }

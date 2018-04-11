@@ -27,9 +27,8 @@ class NotifierViewController: NSViewController, NSBrowserDelegate {
         if let newURL = createURLFromString(urlString: instanceURLField.stringValue){
             print ("New valid URL: \(newURL.absoluteString)")
             notifierModel!.bambooInstanceRootURL = newURL
-            let projectResource = BambooAPIRequest<BambooProjectResource>(basePath: newURL, resource: BambooProjectResource())
+            let projectResource = BambooAPIRequest<BambooProjectResource>(basePath: newURL, resource: BambooProjectResource(projectKey: nil, expandPath: nil))
             projectResource.load(success: {projects in
-                print(projects?.count)
                 self.notifierModel?.projectList = projects!
                 DispatchQueue.main.async {
                     self.bambooBrowser.reloadColumn(0)
@@ -58,6 +57,41 @@ class NotifierViewController: NSViewController, NSBrowserDelegate {
         bambooBrowser.backgroundColor = .clear
         bambooBrowser.autohidesScroller = true
         bambooBrowser.delegate = self
+        bambooBrowser.action = #selector(browserItemSelected(_:))
+        bambooBrowser.target = self
+    }
+    
+    @objc func browserItemSelected(_ sender: Any?){
+        guard bambooBrowser.selectedColumn != -1 else {
+            return
+        }
+        let selectedRow = bambooBrowser.selectedRow(inColumn: bambooBrowser.selectedColumn)
+        
+        switch bambooBrowser.selectedColumn {
+        case 0:
+            doProjectColumnSelected(selectedRow: selectedRow)
+        default:
+            print("Selected row # \(selectedRow) from column # \(bambooBrowser.selectedColumn)")
+        }
+    }
+    
+    private func doProjectColumnSelected(selectedRow: Int) {
+        guard let selectedProject = notifierModel?.projectList[selectedRow] else {
+            return
+        }
+        let projectResource = BambooAPIRequest<BambooProjectResource>(basePath: notifierModel!.bambooInstanceRootURL!, resource: BambooProjectResource(projectKey: selectedProject.key, expandPath: "plans.plan.branches"))
+        projectResource.load(success: {projects in
+            guard let project = projects?.first else {
+                return
+            }
+            self.notifierModel?.projectList[selectedRow] = project
+            self.notifierModel?.selectedProject = project
+            DispatchQueue.main.async {
+                self.bambooBrowser.reloadColumn(1)
+            }
+        }, fail: {errString in
+            print(errString)
+        })
     }
     
     override func viewWillAppear() {
@@ -67,13 +101,6 @@ class NotifierViewController: NSViewController, NSBrowserDelegate {
             instanceURLField.refusesFirstResponder = true
         }
     }
-
-    override var representedObject: Any? {
-        didSet {
-        // Update the view, if already loaded.
-        }
-    }
-    
     
 //     MARK: Browser View Data Source
     func rootItem(for browser: NSBrowser) -> Any? {
@@ -82,19 +109,32 @@ class NotifierViewController: NSViewController, NSBrowserDelegate {
 
     func browser(_ sender: NSBrowser, willDisplayCell cell: Any, atRow row: Int, column: Int) {
         let browserCell = cell as! NSBrowserCell
-        guard let selectedProject = notifierModel?.projectList[row] else {
+        guard let projectList = notifierModel?.projectList else {
             return
         }
         switch column {
         case 0:
-            browserCell.title = selectedProject.name
+            browserCell.title = projectList[row].name
+        case 1:
+            let selectedProject = notifierModel?.selectedProject
+            browserCell.title = selectedProject?.plans?[row].buildName ?? ""
         default:
             browserCell.title = "Unknown"
         }
     }
 
     func browser(_ sender: NSBrowser, numberOfRowsInColumn column: Int) -> Int {
-        return notifierModel!.projectList.count
+        guard let model = notifierModel else{
+            return 0
+        }
+        switch column {
+        case 0:
+            return model.projectList.count
+        case 1:
+            return model.selectedProject?.plans?.count ?? 0
+        default:
+            return 0
+        }
     }
 }
 

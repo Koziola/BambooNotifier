@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct BambooPlanBranch: Codable {
+struct BambooPlanBranch: Decodable {
     //unique identifier for branch
     let key : String
     //combination of project, plan, and shortname
