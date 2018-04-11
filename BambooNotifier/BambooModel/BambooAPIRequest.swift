@@ -27,6 +27,7 @@ class BambooAPIRequest<Resource : BambooAPIResource>{
         }
         
         let request = URLRequest(url: url)
+        print("Executing API request: \(url)")
         let requestTask = URLSession.shared.dataTask(with: request, completionHandler: {data, response, err in
             if err != nil {
                 fail(err!.localizedDescription)

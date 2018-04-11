@@ -79,6 +79,13 @@ class NotifierViewController: NSViewController, NSBrowserDelegate {
         guard let selectedProject = notifierModel?.projectList[selectedRow] else {
             return
         }
+        
+        if selectedProject.plans != nil {
+            self.notifierModel?.selectedProject = selectedProject
+            self.bambooBrowser.reloadColumn(1)
+            return
+        }
+        
         let projectResource = BambooAPIRequest<BambooProjectResource>(basePath: notifierModel!.bambooInstanceRootURL!, resource: BambooProjectResource(projectKey: selectedProject.key, expandPath: "plans.plan.branches"))
         projectResource.load(success: {projects in
             guard let project = projects?.first else {
