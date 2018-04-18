@@ -137,13 +137,17 @@ class NotifierViewController: NSViewController, NSBrowserDelegate {
         }
         switch column {
         case 0:
-            browserCell.title = projectList[row].name
+            let modelItem = projectList[row]
+            browserCell.title = modelItem.name
         case 1:
             let selectedProject = model.selectedProject
-            browserCell.title = selectedProject?.plans?[row].buildName ?? "No plan name"
+            let modelItem = selectedProject?.plans?[row]
+            browserCell.title = modelItem?.buildName ?? "No plan name"
+            browserCell.isLeaf = (modelItem?.branches?.count ?? 0) == 0
         case 2:
             let selectedPlan = model.selectedPlan
             browserCell.title = selectedPlan?.branches?[row].shortName ?? "No branch name"
+            browserCell.isLeaf = true
         default:
             browserCell.title = "Unknown"
         }
@@ -164,29 +168,7 @@ class NotifierViewController: NSViewController, NSBrowserDelegate {
             return 0
         }
     }
-    
-//    func browser(_ browser: NSBrowser, isLeafItem item: Any?) -> Bool {
-//        <#code#>
-//    }
-    
-//    func browser(_ browser: NSBrowser, shouldShowCellExpansionForRow row: Int, column: Int) -> Bool {
-//        guard let model = notifierModel else {
-//            return false
-//        }
-//
-//        switch column {
-//        case 0:
-//            let shouldShow = (model.projectList[row].plans?.count ?? 0) > 0
-//            print("Should show cell expansion for row, col \(row), \(column): \(shouldShow)")
-//            return shouldShow
-//        case 1:
-//            let shouldShow = (model.selectedProject?.plans![row].branches?.count ?? 0) > 0
-//            print("Should show cell expansion for row, col \(row), \(column): \(shouldShow)")
-//            return shouldShow
-//        default:
-//            return false
-//        }
-//    }
+
 }
 
 extension NotifierViewController {
