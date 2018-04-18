@@ -14,6 +14,7 @@ class NotifierModel{
     var bambooInstanceRootURL : URL?
     var projectList : [BambooProject]
     var selectedProject : BambooProject?
+    var selectedPlan : BambooPlan?
     init() {
         bambooInstanceRootURL = nil
         projectList = []

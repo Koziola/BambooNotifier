@@ -17,5 +17,5 @@ struct BambooPlanBranch: Decodable {
     //usually equivalent to the source branch
     let shortName : String
     //Direct link to branch
-    let link : String
+    let link : BambooLink
 }
