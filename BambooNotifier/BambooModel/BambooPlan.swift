@@ -27,7 +27,9 @@ fileprivate struct BambooPlanContainer: Decodable {
     }
 }
 
-struct BambooPlan: Decodable {
+// This is a class rather than a struct so we can inherit from NSObject
+// and be KVO compliant.
+class BambooPlan: NSObject, Decodable, ISubscribable {
     //key of the project the plan belongs to
     let projectKey : String
     //name of the project the plan belongs to
@@ -42,7 +44,7 @@ struct BambooPlan: Decodable {
 
 //    //direct link to the plan
 //    let link : [BambooLink]
-    init(from decoded: Decoder) throws {
+    required init(from decoded: Decoder) throws {
         let rawResponse = try BambooPlanContainer(from: decoded)
         self.projectKey = rawResponse.projectKey
         self.projectName = rawResponse.projectName

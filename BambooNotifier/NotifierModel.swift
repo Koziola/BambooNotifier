@@ -22,14 +22,14 @@ class NotifierModel : NSObject {
     }
     
     var projectList : [BambooProject]
-    var subscribedBranches : [BambooPlanBranch]
+    var subscriptions : [ISubscribable]
     
     var selectedProject : BambooProject? {
         didSet{
             selectedPlan = nil
         }
     }
-    var selectedPlan : BambooPlan? {
+    @objc dynamic var selectedPlan : BambooPlan? {
         didSet {
             selectedPlanBranch = nil
         }
@@ -41,6 +41,6 @@ class NotifierModel : NSObject {
         bambooInstanceRootURL = nil
         projectList = []
         selectedProject = nil
-        subscribedBranches = []
+        subscriptions = []
     }
 }

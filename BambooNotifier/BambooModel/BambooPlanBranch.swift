@@ -10,7 +10,7 @@ import Foundation
 
 // This is a class rather than a struct so we can inherit from NSObject
 // and be KVO compliant.
-class BambooPlanBranch: NSObject, Decodable {
+class BambooPlanBranch: NSObject, Decodable, ISubscribable {
     //unique identifier for branch
     let key : String
     //combination of project, plan, and shortname

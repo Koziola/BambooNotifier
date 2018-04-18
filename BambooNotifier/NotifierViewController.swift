@@ -29,6 +29,7 @@ class NotifierViewController: NSViewController, NSBrowserDelegate {
     
     override func viewWillDisappear() {
         notifierModel?.removeObserver(self, forKeyPath: #keyPath(NotifierModel.selectedPlanBranch))
+        notifierModel?.removeObserver(self, forKeyPath: #keyPath(NotifierModel.selectedPlan))
     }
     
     @objc func doInstanceURLChanged(_ sender: Any?){
@@ -73,6 +74,7 @@ class NotifierViewController: NSViewController, NSBrowserDelegate {
     
     private func bindToSelectedBranch() {
         notifierModel?.addObserver(self, forKeyPath: #keyPath(NotifierModel.selectedPlanBranch), options: .new, context: nil)
+        notifierModel?.addObserver(self, forKeyPath: #keyPath(NotifierModel.selectedPlan), options: .new, context: nil)
     }
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
@@ -93,7 +95,13 @@ class NotifierViewController: NSViewController, NSBrowserDelegate {
         var subscribed = false
         
         if let selectedBranch = model.selectedPlanBranch{
-            subscribed = model.subscribedBranches.contains(selectedBranch)
+            subscribed = model.subscriptions.contains(where: {
+                subscribable in
+                if (selectedBranch.key == subscribable.key) {
+                    return true
+                }
+                return false
+            })
         } else {
             hidden = true
         }
@@ -119,11 +127,18 @@ class NotifierViewController: NSViewController, NSBrowserDelegate {
             return
         }
         if (subscribeButton.title == self.subscribeText){
-            notifierModel?.subscribedBranches.append(selectedBranch)
+            notifierModel?.subscriptions.append(selectedBranch)
             print("now subscribing to \(selectedBranch.shortName)")
         } else {
-            if let index = notifierModel?.subscribedBranches.index(of: selectedBranch){
-                notifierModel?.subscribedBranches.remove(at: index)
+            if let index = notifierModel?.subscriptions.index(where: {
+                subscribable in
+                if (selectedBranch.key == subscribable.key){
+                    return true
+                }
+                return false
+            })
+            {
+                notifierModel?.subscriptions.remove(at: index)
                 print("unsubscribed to \(selectedBranch.shortName)")
             } else{
                 print("attempting to unsubscribe branch \(selectedBranch.shortName) that is not subscribed.")
