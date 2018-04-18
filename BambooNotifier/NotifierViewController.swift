@@ -9,7 +9,9 @@
 import Cocoa
 
 class NotifierViewController: NSViewController, NSBrowserDelegate {
-
+    private let subscribeText = "Subscribe"
+    private let unsubscribeText = "Unsubscribe"
+    
     var notifierModel : NotifierModel? = nil
     
     @IBOutlet var instanceURLField: NSTextField!
@@ -83,15 +85,51 @@ class NotifierViewController: NSViewController, NSBrowserDelegate {
     }
     
     private func handleSelectedPlanBranchChanged(){
+        guard let model = notifierModel else {
+            return
+        }
+        
+        var hidden = false
+        var subscribed = false
+        
+        if let selectedBranch = model.selectedPlanBranch{
+            subscribed = model.subscribedBranches.contains(selectedBranch)
+        } else {
+            hidden = true
+        }
+        print("subscribe button is hidden: \(hidden)")
         DispatchQueue.main.async {
-            let hidden = self.notifierModel?.selectedPlanBranch == nil
-            print("subscribe button is hidden: \(hidden)")
+            if (subscribed){
+                self.subscribeButton.title = self.unsubscribeText
+            } else {
+                self.subscribeButton.title = self.subscribeText
+            }
             self.subscribeButton.isHidden = hidden
+            
         }
     }
     
     private func configureSubscribeButton() {
         subscribeButton.isHidden = true
+        subscribeButton.action = #selector(subscribeButtonPressed(_:))
+    }
+    
+    @objc func subscribeButtonPressed(_ sender: Any?){
+        guard let selectedBranch = notifierModel?.selectedPlanBranch else {
+            return
+        }
+        if (subscribeButton.title == self.subscribeText){
+            notifierModel?.subscribedBranches.append(selectedBranch)
+            print("now subscribing to \(selectedBranch.shortName)")
+        } else {
+            if let index = notifierModel?.subscribedBranches.index(of: selectedBranch){
+                notifierModel?.subscribedBranches.remove(at: index)
+                print("unsubscribed to \(selectedBranch.shortName)")
+            } else{
+                print("attempting to unsubscribe branch \(selectedBranch.shortName) that is not subscribed.")
+            }
+        }
+        handleSelectedPlanBranchChanged()
     }
     
     @objc func browserItemSelected(_ sender: Any?){

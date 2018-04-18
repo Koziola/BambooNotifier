@@ -20,7 +20,10 @@ class NotifierModel : NSObject {
             selectedProject = nil
         }
     }
+    
     var projectList : [BambooProject]
+    var subscribedBranches : [BambooPlanBranch]
+    
     var selectedProject : BambooProject? {
         didSet{
             selectedPlan = nil
@@ -38,5 +41,6 @@ class NotifierModel : NSObject {
         bambooInstanceRootURL = nil
         projectList = []
         selectedProject = nil
+        subscribedBranches = []
     }
 }
