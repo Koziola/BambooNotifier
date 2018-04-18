@@ -64,8 +64,13 @@ class NotifierViewController: NSViewController, NSBrowserDelegate {
         guard bambooBrowser.selectedColumn != -1 else {
             return
         }
-        let selectedRow = bambooBrowser.selectedRow(inColumn: bambooBrowser.selectedColumn)
+        if let selectedBrowserCell = bambooBrowser.selectedCell(inColumn: bambooBrowser.selectedColumn) as? NSBrowserCell {
+            if selectedBrowserCell.isLeaf {
+                return
+            }
+        }
         
+        let selectedRow = bambooBrowser.selectedRow(inColumn: bambooBrowser.selectedColumn)
         switch bambooBrowser.selectedColumn {
         case 0:
             doProjectColumnSelected(selectedRow: selectedRow)
