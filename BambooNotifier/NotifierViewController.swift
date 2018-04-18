@@ -14,18 +14,27 @@ class NotifierViewController: NSViewController, NSBrowserDelegate {
     
     @IBOutlet var instanceURLField: NSTextField!
     @IBOutlet var bambooBrowser: NSBrowser!
+    @IBOutlet var subscribeButton: NSButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         configureInstanceURLField()
         configureBrowser()
+        bindToSelectedBranch()
+        configureSubscribeButton()
+    }
+    
+    override func viewWillDisappear() {
+        notifierModel?.removeObserver(self, forKeyPath: #keyPath(NotifierModel.selectedPlanBranch))
     }
     
     @objc func doInstanceURLChanged(_ sender: Any?){
         if let newURL = createURLFromString(urlString: instanceURLField.stringValue){
-            print ("New valid URL: \(newURL.absoluteString)")
-            notifierModel!.bambooInstanceRootURL = newURL
+            if (notifierModel!.bambooInstanceRootURL != newURL){
+                notifierModel!.bambooInstanceRootURL = newURL
+            }
+            
             let projectResource = BambooAPIRequest<BambooProjectResource>(basePath: newURL, resource: BambooProjectResource(projectKey: nil, expandPath: nil))
             projectResource.load(success: {projects in
                 self.notifierModel?.projectList = projects!
@@ -60,14 +69,34 @@ class NotifierViewController: NSViewController, NSBrowserDelegate {
         bambooBrowser.target = self
     }
     
+    private func bindToSelectedBranch() {
+        notifierModel?.addObserver(self, forKeyPath: #keyPath(NotifierModel.selectedPlanBranch), options: .new, context: nil)
+    }
+    
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        switch keyPath {
+        case #keyPath(NotifierModel.selectedPlanBranch):
+            handleSelectedPlanBranchChanged()
+        default:
+            return
+        }
+    }
+    
+    private func handleSelectedPlanBranchChanged(){
+        DispatchQueue.main.async {
+            let hidden = self.notifierModel?.selectedPlanBranch == nil
+            print("subscribe button is hidden: \(hidden)")
+            self.subscribeButton.isHidden = hidden
+        }
+    }
+    
+    private func configureSubscribeButton() {
+        subscribeButton.isHidden = true
+    }
+    
     @objc func browserItemSelected(_ sender: Any?){
         guard bambooBrowser.selectedColumn != -1 else {
             return
-        }
-        if let selectedBrowserCell = bambooBrowser.selectedCell(inColumn: bambooBrowser.selectedColumn) as? NSBrowserCell {
-            if selectedBrowserCell.isLeaf {
-                return
-            }
         }
         
         let selectedRow = bambooBrowser.selectedRow(inColumn: bambooBrowser.selectedColumn)
@@ -76,6 +105,8 @@ class NotifierViewController: NSViewController, NSBrowserDelegate {
             doProjectColumnSelected(selectedRow: selectedRow)
         case 1:
             doPlanColumnSelected(selectedRow: selectedRow)
+        case 2:
+            doBranchColumnSelected(selectedRow: selectedRow)
         default:
             print("Selected row # \(selectedRow) from column # \(bambooBrowser.selectedColumn)")
         }
@@ -108,7 +139,7 @@ class NotifierViewController: NSViewController, NSBrowserDelegate {
     }
     
     private func doPlanColumnSelected(selectedRow: Int){
-        guard let selectedPlan = notifierModel?.selectedProject?.plans![selectedRow] else{
+        guard let selectedPlan = notifierModel?.selectedProject?.plans?[selectedRow] else{
             return
         }
         
@@ -117,6 +148,13 @@ class NotifierViewController: NSViewController, NSBrowserDelegate {
             self.bambooBrowser.reloadColumn(2)
             return
         }
+    }
+    
+    private func doBranchColumnSelected(selectedRow: Int){
+        guard let selectedBranch = notifierModel?.selectedPlan?.branches?[selectedRow] else{
+            return
+        }
+        notifierModel?.selectedPlanBranch = selectedBranch
     }
     
     override func viewWillAppear() {
@@ -173,7 +211,6 @@ class NotifierViewController: NSViewController, NSBrowserDelegate {
             return 0
         }
     }
-
 }
 
 extension NotifierViewController {
