@@ -37,6 +37,12 @@ class NotifierModel : NSObject {
     
     @objc dynamic var selectedPlanBranch : BambooPlanBranch?
     
+    var currentlySelectedSubscribable : ISubscribable?{
+        get{
+            return selectedPlan ?? selectedPlanBranch
+        }
+    }
+    
     override init() {
         bambooInstanceRootURL = nil
         projectList = []

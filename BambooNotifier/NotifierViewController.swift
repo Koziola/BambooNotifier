@@ -80,13 +80,15 @@ class NotifierViewController: NSViewController, NSBrowserDelegate {
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         switch keyPath {
         case #keyPath(NotifierModel.selectedPlanBranch):
-            handleSelectedPlanBranchChanged()
+            handleSelectedPlanChanged()
+        case #keyPath(NotifierModel.selectedPlan):
+            handleSelectedPlanChanged()
         default:
             return
         }
     }
     
-    private func handleSelectedPlanBranchChanged(){
+    private func handleSelectedPlanChanged(){
         guard let model = notifierModel else {
             return
         }
@@ -94,17 +96,19 @@ class NotifierViewController: NSViewController, NSBrowserDelegate {
         var hidden = false
         var subscribed = false
         
-        if let selectedBranch = model.selectedPlanBranch{
-            subscribed = model.subscriptions.contains(where: {
-                subscribable in
-                if (selectedBranch.key == subscribable.key) {
-                    return true
-                }
-                return false
-            })
-        } else {
+        if let currentSubscribable = model.currentlySelectedSubscribable{
+            subscribed = IsAlreadySubscribed(model: model, subscribable: currentSubscribable)
+        } else{
             hidden = true
         }
+        
+//        if let selectedBranch = model.selectedPlanBranch{
+//            subscribed = IsAlreadySubscribed(model: model, subscribable: selectedBranch)
+//        } else if let selectedPlan = model.selectedPlan {
+//            subscribed = IsAlreadySubscribed(model: model, subscribable: selectedPlan)
+//        } else {
+//            hidden = true
+//        }
         print("subscribe button is hidden: \(hidden)")
         DispatchQueue.main.async {
             if (subscribed){
@@ -117,34 +121,44 @@ class NotifierViewController: NSViewController, NSBrowserDelegate {
         }
     }
     
+    private func IsAlreadySubscribed(model: NotifierModel, subscribable : ISubscribable) -> Bool {
+        return model.subscriptions.contains(where: {
+            subscription in
+            if subscription.key == subscribable.key {
+                return true
+            }
+            return false
+        })
+    }
+    
     private func configureSubscribeButton() {
         subscribeButton.isHidden = true
         subscribeButton.action = #selector(subscribeButtonPressed(_:))
     }
     
     @objc func subscribeButtonPressed(_ sender: Any?){
-        guard let selectedBranch = notifierModel?.selectedPlanBranch else {
+        guard let selectedSubscribable = notifierModel?.currentlySelectedSubscribable else {
             return
         }
         if (subscribeButton.title == self.subscribeText){
-            notifierModel?.subscriptions.append(selectedBranch)
-            print("now subscribing to \(selectedBranch.shortName)")
+            notifierModel?.subscriptions.append(selectedSubscribable)
+            print("now subscribing to \(selectedSubscribable.key)")
         } else {
             if let index = notifierModel?.subscriptions.index(where: {
                 subscribable in
-                if (selectedBranch.key == subscribable.key){
+                if (selectedSubscribable.key == subscribable.key){
                     return true
                 }
                 return false
             })
             {
                 notifierModel?.subscriptions.remove(at: index)
-                print("unsubscribed to \(selectedBranch.shortName)")
+                print("unsubscribed to \(selectedSubscribable.key)")
             } else{
-                print("attempting to unsubscribe branch \(selectedBranch.shortName) that is not subscribed.")
+                print("attempting to unsubscribe branch \(selectedSubscribable.key) that is not subscribed.")
             }
         }
-        handleSelectedPlanBranchChanged()
+        handleSelectedPlanChanged()
     }
     
     @objc func browserItemSelected(_ sender: Any?){
