@@ -11,14 +11,14 @@ import FeedKit
 
 class RSSSubscriber {
     let feedURL : URL
-    let rssParser : FeedParser?
+    private(set) var rssParser : FeedParser
     let refreshTimer : RefreshTimer?
     var mostRecentRSSEntry : RSSFeedItem?
     
     private init(feedURL : URL, refreshTimer : RefreshTimer){
         self.feedURL = feedURL
         self.refreshTimer = refreshTimer
-        self.rssParser = FeedParser(URL: feedURL)
+        self.rssParser = FeedParser(URL: feedURL)!
         self.mostRecentRSSEntry = nil
         parseFromFeed()
         subscribeToRefresh()
@@ -31,7 +31,8 @@ class RSSSubscriber {
     
     private func parseFromFeed(){
         debugPrint("Parsing new entries for url: \(feedURL)")
-        rssParser?.parseAsync(queue: .global(), result: { (result) in
+        rssParser = FeedParser(URL: feedURL)!
+        rssParser.parseAsync(result: { (result) in
             self.interpretResults(result: result)
         })
     }
@@ -44,8 +45,8 @@ class RSSSubscriber {
         }
         
         let rssFeed = result.rssFeed!
-        debugPrint("RSS INFO FOR TIME: \(Date.init())")
-        debugPrint("Last content change timestamp: \(String(describing: rssFeed.lastBuildDate))")
+//        debugPrint("RSS INFO FOR TIME: \(Date.init())")
+//        debugPrint("Last content change timestamp: \(String(describing: rssFeed.lastBuildDate))")
         debugPrint("Count of items: \(String(describing: rssFeed.items?.count))")
         
         if let feedItems = rssFeed.items{
@@ -56,10 +57,22 @@ class RSSSubscriber {
     }
     
     private func noteMostRecentItem(feedItem : RSSFeedItem){
-        if (mostRecentRSSEntry?.pubDate!.compare(feedItem.pubDate!) == ComparisonResult.orderedDescending){
-            debugPrint("New entry encountered.  Firing notification")
-        } else{
-            debugPrint("No existing entry.  Adding new entry as existing.")
+        guard let mostRecentEntryDate = mostRecentRSSEntry?.pubDate else{
+            debugPrint("Most recent entry does not have a publication date.")
+            mostRecentRSSEntry = feedItem
+            return
+        }
+        guard let newFeedItemPubDate = feedItem.pubDate else{
+            debugPrint("New item does not have a publication date.  Unable to compare.")
+            return
+        }
+        debugPrint("New feed item pub date: \(newFeedItemPubDate)")
+        debugPrint("most recent entry pub date: \(newFeedItemPubDate)")
+        if (newFeedItemPubDate > mostRecentEntryDate){
+            debugPrint("New entry encountered.  Firing notification...")
+            //TODO: Fire notification here
+        } else {
+            debugPrint("No new entry encountered.  Doing nothing.")
         }
         mostRecentRSSEntry = feedItem
     }
@@ -74,9 +87,6 @@ class RSSSubscriber {
     
     static func createSubscriber(feedURL : URL, refreshTimer : RefreshTimer) -> RSSSubscriber? {
         let subscriber = RSSSubscriber(feedURL: feedURL, refreshTimer: refreshTimer)
-        if subscriber.rssParser == nil{
-            return nil
-        }
         return subscriber
     }
     
@@ -87,10 +97,6 @@ class RSSSubscriber {
             return nil
         }
         let subscriber = RSSSubscriber(feedURL: url, refreshTimer: refreshTimer)
-        if subscriber.rssParser == nil {
-            print("Error creating bamboo RSS subscriber.")
-            return nil
-        }
         return subscriber
     }
 }
