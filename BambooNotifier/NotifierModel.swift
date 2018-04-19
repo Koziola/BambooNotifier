@@ -22,7 +22,23 @@ class NotifierModel : NSObject {
     }
     
     var projectList : [BambooProject]
-    var subscriptions : [ISubscribable]
+    @objc dynamic var subscriptions : [String]
+    
+    /*
+    * Use a proxy for additions/removals because 'resizing' an array causes
+    * initialization of a new, larger array and a copy of all the existing values
+    * into the new array.  This means that the wrong kind of KVO notifications are
+    * sent (new collection vs simple addition or removal).
+    */
+    func addSubscription(subscribable : ISubscribable){
+        let proxy = mutableArrayValue(forKeyPath: #keyPath(subscriptions))
+        proxy.add(subscribable.key)
+    }
+    
+    func removeSubscription(subscribable : ISubscribable){
+        let proxy = mutableArrayValue(forKeyPath: #keyPath(subscriptions))
+        proxy.remove(subscribable.key)
+    }
     
     var selectedProject : BambooProject? {
         didSet{

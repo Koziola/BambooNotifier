@@ -124,7 +124,7 @@ class NotifierViewController: NSViewController, NSBrowserDelegate {
     private func IsAlreadySubscribed(model: NotifierModel, subscribable : ISubscribable) -> Bool {
         return model.subscriptions.contains(where: {
             subscription in
-            if subscription.key == subscribable.key {
+            if subscription == subscribable.key {
                 return true
             }
             return false
@@ -141,22 +141,11 @@ class NotifierViewController: NSViewController, NSBrowserDelegate {
             return
         }
         if (subscribeButton.title == self.subscribeText){
-            notifierModel?.subscriptions.append(selectedSubscribable)
+            notifierModel?.addSubscription(subscribable: selectedSubscribable)
             print("now subscribing to \(selectedSubscribable.key)")
         } else {
-            if let index = notifierModel?.subscriptions.index(where: {
-                subscribable in
-                if (selectedSubscribable.key == subscribable.key){
-                    return true
-                }
-                return false
-            })
-            {
-                notifierModel?.subscriptions.remove(at: index)
-                print("unsubscribed to \(selectedSubscribable.key)")
-            } else{
-                print("attempting to unsubscribe branch \(selectedSubscribable.key) that is not subscribed.")
-            }
+            notifierModel?.removeSubscription(subscribable: selectedSubscribable)
+            print("unsubscribed to \(selectedSubscribable.key)")
         }
         handleSelectedPlanChanged()
     }

@@ -26,9 +26,11 @@ class RSSSubscriber {
     
     deinit{
         NotificationCenter.default.removeObserver(self, name: Notification.Name(RefreshTimer.REFRESH_TIMER_NOTIFICATION), object: refreshTimer)
+        debugPrint("RSSSubscriber refresh timer observer removed.")
     }
     
     private func parseFromFeed(){
+        debugPrint("Parsing new entries for url: \(feedURL)")
         rssParser?.parseAsync(queue: .global(), result: { (result) in
             self.interpretResults(result: result)
         })
@@ -73,6 +75,20 @@ class RSSSubscriber {
     static func createSubscriber(feedURL : URL, refreshTimer : RefreshTimer) -> RSSSubscriber? {
         let subscriber = RSSSubscriber(feedURL: feedURL, refreshTimer: refreshTimer)
         if subscriber.rssParser == nil{
+            return nil
+        }
+        return subscriber
+    }
+    
+    static func createBambooSubscriber(key : String, refreshTimer : RefreshTimer) -> RSSSubscriber?{
+        let urlString = "http://havokbamboo/rss/createAllBuildsRssFeed.action?feedType=rssAll&buildKey=\(key)"
+        guard let url = URL(string: urlString) else{
+            print("Error creating bamboo RSS subscriber URL.")
+            return nil
+        }
+        let subscriber = RSSSubscriber(feedURL: url, refreshTimer: refreshTimer)
+        if subscriber.rssParser == nil {
+            print("Error creating bamboo RSS subscriber.")
             return nil
         }
         return subscriber
