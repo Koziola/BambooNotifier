@@ -16,8 +16,6 @@ class RSSSubscriber {
     let subscribable : ISubscribable
     var mostRecentRSSEntry : RSSFeedItem?
     
-    static let NEW_RSS_NOTIFICATION = "RSSNotification"
-    
     private init(feedURL : URL, refreshTimer : RefreshTimer, subscribable : ISubscribable){
         self.feedURL = feedURL
         self.refreshTimer = refreshTimer

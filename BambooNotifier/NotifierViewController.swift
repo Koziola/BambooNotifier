@@ -25,6 +25,10 @@ class NotifierViewController: NSViewController, NSBrowserDelegate {
         configureBrowser()
         bindToSelectedBranch()
         configureSubscribeButton()
+        
+        if let url = notifierModel!.bambooInstanceRootURL{
+            loadNewURL(newURL: url)
+        }
     }
     
     override func viewWillDisappear() {
@@ -37,17 +41,20 @@ class NotifierViewController: NSViewController, NSBrowserDelegate {
             if (notifierModel!.bambooInstanceRootURL != newURL){
                 notifierModel!.bambooInstanceRootURL = newURL
             }
-            
-            let projectResource = BambooAPIRequest<BambooProjectResource>(basePath: newURL, resource: BambooProjectResource(projectKey: nil, expandPath: nil))
-            projectResource.load(success: {projects in
-                self.notifierModel?.projectList = projects!
-                DispatchQueue.main.async {
-                    self.bambooBrowser.reloadColumn(0)
-                }
-            }, fail: {errString in
-                print(errString)
-            })
+            loadNewURL(newURL: newURL)
         }
+    }
+    
+    private func loadNewURL(newURL : URL){
+        let projectResource = BambooAPIRequest<BambooProjectResource>(basePath: newURL, resource: BambooProjectResource(projectKey: nil, expandPath: nil))
+        projectResource.load(success: {projects in
+            self.notifierModel?.projectList = projects!
+            DispatchQueue.main.async {
+                self.bambooBrowser.reloadColumn(0)
+            }
+        }, fail: {errString in
+            print(errString)
+        })
     }
     
     private func createURLFromString(urlString : String?) -> URL? {
@@ -61,6 +68,9 @@ class NotifierViewController: NSViewController, NSBrowserDelegate {
     
     private func configureInstanceURLField() {
         instanceURLField.placeholderString = "None"
+        if let urlString = notifierModel!.bambooInstanceRootURL?.absoluteString {
+            instanceURLField.stringValue = urlString
+        }
         instanceURLField.action = #selector(doInstanceURLChanged(_:))
     }
     

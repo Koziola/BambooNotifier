@@ -17,9 +17,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var refreshTimer : RefreshTimer = RefreshTimer()
     var feeds = [String: RSSSubscriber]()
     
+    lazy var contextMenu : NSMenu = createContextMenu()
+    
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
         notifierPopover.behavior = .transient
+        ModelPersistence.loadModel(model: notifierModel)
+        
         setStatusItemImage()
         setStatusItemAction()
         addModelObserver()
@@ -32,6 +36,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     private func setStatusItemAction(){
         notifierStatusItem.action = #selector(toggleNotifierPopover(_:))
+        notifierStatusItem.sendAction(on: [NSEvent.EventTypeMask(rawValue: NSEvent.EventTypeMask.RawValue(UInt8(NSEvent.EventTypeMask.leftMouseUp.rawValue) | UInt8(NSEvent.EventTypeMask.rightMouseUp.rawValue)))])
     }
     
     private func addModelObserver(){
@@ -101,10 +106,44 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     @objc func toggleNotifierPopover(_ sender: Any?){
+        let event = NSApp.currentEvent!
+        
+        switch event.type {
+        case NSEvent.EventType.rightMouseUp:
+            doStatusBarItemRightClick()
+            break
+        default:
+            doStatusBarItemLeftClick()
+            break
+        }
+
+    }
+    
+    private func doStatusBarItemRightClick(){
+        if (notifierPopover.isShown){
+            notifierPopover.close()
+        }
+//        notifierStatusItem.menu = contextMenu
+        notifierStatusItem.popUpMenu(contextMenu)
+    }
+    
+    private func createContextMenu() -> NSMenu{
+        let menu = NSMenu()
+        let quitMenuItem = NSMenuItem()
+        quitMenuItem.title = "Quit"
+        quitMenuItem.action = #selector(quitPressed(_:))
+        menu.addItem(quitMenuItem)
+        return menu
+    }
+    
+    @objc private func quitPressed(_ sender: Any?){
+        NSApp.terminate(sender)
+    }
+    
+    private func doStatusBarItemLeftClick(){
         if (notifierPopover.isShown){
             notifierPopover.close()
         } else if let button = notifierStatusItem.button {
-            //TODO: Pass in NotifierModel object
             notifierPopover.contentViewController = NotifierViewController.freshController(model: notifierModel)
             notifierPopover.show(relativeTo: button.bounds, of: button, preferredEdge: .minY)
         }
@@ -112,6 +151,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application
+        ModelPersistence.saveModel(model: notifierModel)
     }
 
     // MARK: - Core Data stack
