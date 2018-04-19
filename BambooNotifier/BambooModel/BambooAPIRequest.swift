@@ -27,6 +27,7 @@ class BambooAPIRequest<Resource : BambooAPIResource>{
         }
         
         let request = URLRequest(url: url)
+        print("Executing API request: \(url)")
         let requestTask = URLSession.shared.dataTask(with: request, completionHandler: {data, response, err in
             if err != nil {
                 fail(err!.localizedDescription)
@@ -48,8 +49,15 @@ class BambooAPIRequest<Resource : BambooAPIResource>{
         }
         var subPath = apiPath
         subPath += resource.resourcePath
+        if resource.detailPath != nil {
+            subPath += "/\(resource.detailPath!)"
+        }
         subPath += jsonEXT
         components.path = subPath
+        
+        if resource.expandPath != nil {
+            components.queryItems = [URLQueryItem(name: "expand", value: resource.expandPath)]
+        }
         
         return components.url
     }

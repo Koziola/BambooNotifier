@@ -8,11 +8,11 @@
 
 import Foundation
 
-struct BambooProjectService: Codable {
+struct BambooProjectService: Decodable {
     //list of projects
     let container : BambooProjectContainerService
     
-    struct BambooProjectContainerService : Codable {
+    struct BambooProjectContainerService : Decodable {
         var size : Int
         var projectList : [BambooProject]
         

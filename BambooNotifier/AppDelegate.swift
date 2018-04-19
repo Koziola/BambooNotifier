@@ -15,29 +15,89 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let notifierPopover = NSPopover()
     let notifierModel = NotifierModel()
     var refreshTimer : RefreshTimer = RefreshTimer()
-    var feeds : [RSSSubscriber] = []
+    var feeds = [String: RSSSubscriber]()
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
+        notifierPopover.behavior = .transient
         setStatusItemImage()
         setStatusItemAction()
+        addModelObserver()
 //        addFeeds()
     }
 
-    fileprivate func setStatusItemImage(){
+    private func setStatusItemImage(){
         notifierStatusItem.image = NSImage(named: NSImage.Name("logoBambooPNG"))
     }
     
-    fileprivate func setStatusItemAction(){
+    private func setStatusItemAction(){
         notifierStatusItem.action = #selector(toggleNotifierPopover(_:))
     }
     
-    private func addFeeds(){
-        //for testing & debugging
-        let rssURL = URL(string: "http://images.apple.com/main/rss/hotnews/hotnews.rss")!
-        if let rssFeed = RSSSubscriber.createSubscriber(feedURL: rssURL, refreshTimer: refreshTimer) {
-            feeds.append(rssFeed)
+    private func addModelObserver(){
+        let options : UInt = NSKeyValueObservingOptions.new.rawValue | NSKeyValueObservingOptions.old.rawValue | NSKeyValueObservingOptions.prior.rawValue
+        notifierModel.addObserver(self, forKeyPath: #keyPath(NotifierModel.subscriptions), options: NSKeyValueObservingOptions.init(rawValue: options), context: nil)
+    }
+    
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        switch keyPath {
+        case #keyPath(NotifierModel.subscriptions):
+            guard let changeKind = NSKeyValueChange(rawValue: change![NSKeyValueChangeKey.kindKey] as! UInt) else {
+                debugPrint("Unable to determine kind of KVO change.")
+                return
+            }
+
+            let prior = change![NSKeyValueChangeKey.notificationIsPriorKey] as? Bool
+            
+            switch changeKind {
+                case NSKeyValueChange.insertion:
+                    if prior != nil {
+                        return
+                    }
+                    let changedIndex = (change![NSKeyValueChangeKey.indexesKey] as! NSIndexSet).firstIndex
+                    let changedSub = notifierModel.subscriptions[changedIndex]
+                    AddSubscriberFeed(subKey: changedSub)
+                    break
+                case NSKeyValueChange.removal:
+                    if prior == nil {
+                        return
+                    }
+                    let changedIndex = (change![NSKeyValueChangeKey.indexesKey] as! NSIndexSet).firstIndex
+                    let changedSub = notifierModel.subscriptions[changedIndex]
+                    RemoveSubscriberFeed(subKey: changedSub)
+                    break
+                default:
+                    debugPrint("No responder for change kind: \(changeKind)")
+            }
+        default:
+            break
         }
+    }
+    
+    private func AddSubscriberFeed(subKey : String){
+        guard let newRSSSubscriber = RSSSubscriber.createBambooSubscriber(key: subKey, refreshTimer: refreshTimer) else {
+            return
+        }
+        feeds[subKey] = newRSSSubscriber
+        debugPrint("New subscriber added: \(subKey)")
+    }
+    
+    private func RemoveSubscriberFeed(subKey : String){
+        var existingSub = feeds.removeValue(forKey: subKey)
+        if existingSub == nil {
+            debugPrint("Unable to find existing subscriber for key \(subKey)")
+            return
+        }
+        existingSub = nil
+         debugPrint("Subscriber successfully removed: \(subKey)")
+    }
+    
+    private func addFeeds(){
+//        //for testing & debugging
+//        let rssURL = URL(string: "http://images.apple.com/main/rss/hotnews/hotnews.rss")!
+//        if let rssFeed = RSSSubscriber.createSubscriber(feedURL: rssURL, refreshTimer: refreshTimer) {
+//            feeds.append(rssFeed)
+//        }
     }
     
     @objc func toggleNotifierPopover(_ sender: Any?){

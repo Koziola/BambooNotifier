@@ -8,12 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		5FDA143FE65AD4728268329D /* Pods_BambooNotifier.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CE917624D3432DA8EF874C3 /* Pods_BambooNotifier.framework */; };
+		AB6B2E3A20659EF50082A46B /* BambooLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB6B2E3920659EF50082A46B /* BambooLink.swift */; };
 		AB8B657020251C45003EB7BD /* BambooAPIResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8B656F20251C45003EB7BD /* BambooAPIResource.swift */; };
 		AB8B657220251DEF003EB7BD /* BambooProjectResource.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8B657120251DEF003EB7BD /* BambooProjectResource.swift */; };
 		AB8B6574202522C7003EB7BD /* BambooAPIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB8B6573202522C7003EB7BD /* BambooAPIRequest.swift */; };
 		ABC61126201BECD2007372F4 /* BambooPlanBranch.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC61125201BECD2007372F4 /* BambooPlanBranch.swift */; };
 		ABC61128201BEEDC007372F4 /* BambooPlan.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC61127201BEEDC007372F4 /* BambooPlan.swift */; };
 		ABC6112A201BEF7D007372F4 /* BambooProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC61129201BEF7D007372F4 /* BambooProject.swift */; };
+		ABC8DCB62087DA4200F7D9CB /* ISubscribable.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABC8DCB52087DA4200F7D9CB /* ISubscribable.swift */; };
 		ABE40D7A2024FB9D00E66047 /* BambooProjectService.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABE40D792024FB9D00E66047 /* BambooProjectService.swift */; };
 		ABFC7FD22011B37F00B1644C /* RefreshTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFC7FD12011B37F00B1644C /* RefreshTimer.swift */; };
 		ABFC7FEC201685BF00B1644C /* RSSSubscriber.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABFC7FEB201685BF00B1644C /* RSSSubscriber.swift */; };
@@ -29,12 +31,14 @@
 		04344A498653B09A27159ACF /* Pods-BambooNotifier.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BambooNotifier.release.xcconfig"; path = "Pods/Target Support Files/Pods-BambooNotifier/Pods-BambooNotifier.release.xcconfig"; sourceTree = "<group>"; };
 		2CE917624D3432DA8EF874C3 /* Pods_BambooNotifier.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BambooNotifier.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		685EA8ADEB411643431A10E0 /* Pods-BambooNotifier.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BambooNotifier.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BambooNotifier/Pods-BambooNotifier.debug.xcconfig"; sourceTree = "<group>"; };
+		AB6B2E3920659EF50082A46B /* BambooLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BambooLink.swift; sourceTree = "<group>"; };
 		AB8B656F20251C45003EB7BD /* BambooAPIResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BambooAPIResource.swift; sourceTree = "<group>"; };
 		AB8B657120251DEF003EB7BD /* BambooProjectResource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BambooProjectResource.swift; sourceTree = "<group>"; };
 		AB8B6573202522C7003EB7BD /* BambooAPIRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BambooAPIRequest.swift; sourceTree = "<group>"; };
 		ABC61125201BECD2007372F4 /* BambooPlanBranch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BambooPlanBranch.swift; sourceTree = "<group>"; };
 		ABC61127201BEEDC007372F4 /* BambooPlan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BambooPlan.swift; sourceTree = "<group>"; };
 		ABC61129201BEF7D007372F4 /* BambooProject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BambooProject.swift; sourceTree = "<group>"; };
+		ABC8DCB52087DA4200F7D9CB /* ISubscribable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISubscribable.swift; sourceTree = "<group>"; };
 		ABE40D792024FB9D00E66047 /* BambooProjectService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BambooProjectService.swift; sourceTree = "<group>"; };
 		ABFC7FD12011B37F00B1644C /* RefreshTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshTimer.swift; sourceTree = "<group>"; };
 		ABFC7FEB201685BF00B1644C /* RSSSubscriber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSSSubscriber.swift; sourceTree = "<group>"; };
@@ -79,6 +83,8 @@
 				AB8B656F20251C45003EB7BD /* BambooAPIResource.swift */,
 				AB8B657120251DEF003EB7BD /* BambooProjectResource.swift */,
 				AB8B6573202522C7003EB7BD /* BambooAPIRequest.swift */,
+				AB6B2E3920659EF50082A46B /* BambooLink.swift */,
+				ABC8DCB52087DA4200F7D9CB /* ISubscribable.swift */,
 			);
 			path = BambooModel;
 			sourceTree = "<group>";
@@ -280,7 +286,9 @@
 				ABFC7FEE2016A3EC00B1644C /* NotifierModel.swift in Sources */,
 				ABC61126201BECD2007372F4 /* BambooPlanBranch.swift in Sources */,
 				AB8B6574202522C7003EB7BD /* BambooAPIRequest.swift in Sources */,
+				ABC8DCB62087DA4200F7D9CB /* ISubscribable.swift in Sources */,
 				ABFEA66F2011A7B00092A2E9 /* BambooNotifier.xcdatamodeld in Sources */,
+				AB6B2E3A20659EF50082A46B /* BambooLink.swift in Sources */,
 				ABFC7FEC201685BF00B1644C /* RSSSubscriber.swift in Sources */,
 				AB8B657220251DEF003EB7BD /* BambooProjectResource.swift in Sources */,
 				AB8B657020251C45003EB7BD /* BambooAPIResource.swift in Sources */,

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13771"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14109"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
         <capability name="stacking Non-gravity area distributions on NSStackView" minToolsVersion="7.0" minSystemVersion="10.11"/>
     </dependencies>
@@ -686,12 +686,12 @@
         <scene sceneID="hIz-AP-VOD">
             <objects>
                 <viewController storyboardIdentifier="NotifierViewController" id="XfG-lQ-9wD" customClass="NotifierViewController" customModule="BambooNotifier" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" wantsLayer="YES" id="m2S-Jp-Qdl" customClass="NSVisualEffectView">
-                        <rect key="frame" x="0.0" y="0.0" width="585" height="270"/>
+                    <view key="view" wantsLayer="YES" id="m2S-Jp-Qdl">
+                        <rect key="frame" x="0.0" y="0.0" width="585" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5hm-oS-mbf">
-                                <rect key="frame" x="8" y="240" width="569" height="22"/>
+                                <rect key="frame" x="8" y="270" width="569" height="22"/>
                                 <subviews>
                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="zoZ-JI-ehT">
                                         <rect key="frame" x="-2" y="3" width="142" height="17"/>
@@ -701,9 +701,9 @@
                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                     </textField>
-                                    <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="FUA-wX-a3i">
+                                    <textField verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FUA-wX-a3i">
                                         <rect key="frame" x="146" y="0.0" width="423" height="22"/>
-                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="dd3-QA-fbt">
+                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" usesSingleLineMode="YES" bezelStyle="round" id="dd3-QA-fbt">
                                             <font key="font" metaFont="system"/>
                                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -719,20 +719,39 @@
                                     <real value="3.4028234663852886e+38"/>
                                 </customSpacing>
                             </stackView>
+                            <browser verticalHuggingPriority="750" allowsExpansionToolTips="YES" enabled="YES" hasHorizontalScroller="YES" allowsEmptySelection="YES" allowsBranchSelection="YES" defaultColumnWidth="188" minColumnWidth="100" maxVisibleColumns="3" titled="YES" separatesColumns="YES" allowsTypeSelect="YES" columnResizingType="user" translatesAutoresizingMaskIntoConstraints="NO" id="pFw-39-CQk">
+                                <rect key="frame" x="8" y="37" width="569" height="235"/>
+                            </browser>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="6Y9-W4-C4R">
+                                <rect key="frame" x="482" y="1" width="101" height="32"/>
+                                <buttonCell key="cell" type="push" title="Subscribe" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Mod-ks-rGy">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="6Y9-W4-C4R" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="8" id="6do-j4-sz4"/>
                             <constraint firstItem="5hm-oS-mbf" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="8" id="KJb-ui-Dj5"/>
+                            <constraint firstItem="pFw-39-CQk" firstAttribute="top" secondItem="5hm-oS-mbf" secondAttribute="bottom" constant="20" id="REn-dh-0aa"/>
+                            <constraint firstItem="pFw-39-CQk" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="8" id="S7s-Sx-0Ir"/>
                             <constraint firstAttribute="trailing" secondItem="5hm-oS-mbf" secondAttribute="trailing" constant="8" id="UHb-Gi-cZU"/>
+                            <constraint firstAttribute="trailing" secondItem="6Y9-W4-C4R" secondAttribute="trailing" constant="8" id="ePy-cq-NcS"/>
+                            <constraint firstAttribute="bottom" secondItem="6Y9-W4-C4R" secondAttribute="bottom" constant="8" id="fb4-Ed-TZs"/>
+                            <constraint firstItem="6Y9-W4-C4R" firstAttribute="top" secondItem="pFw-39-CQk" secondAttribute="bottom" constant="8" id="ksl-VM-5Ne"/>
+                            <constraint firstAttribute="trailing" secondItem="pFw-39-CQk" secondAttribute="trailing" constant="8" id="pGT-AH-RUV"/>
                             <constraint firstItem="5hm-oS-mbf" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="8" id="tTJ-AB-1iB"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="bambooBrowser" destination="pFw-39-CQk" id="nJy-Pu-BWC"/>
                         <outlet property="instanceURLField" destination="FUA-wX-a3i" id="ST0-tt-qLU"/>
+                        <outlet property="subscribeButton" destination="6Y9-W4-C4R" id="ZS1-94-Rel"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="655"/>
+            <point key="canvasLocation" x="74.5" y="655"/>
         </scene>
     </scenes>
 </document>

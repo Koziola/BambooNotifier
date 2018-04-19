@@ -11,5 +11,7 @@ import Foundation
 protocol BambooAPIResource {
     associatedtype Model
     var resourcePath : String { get }
+    var detailPath : String? { get }
+    var expandPath : String? { get }
     func makeModel(data: Data) -> Model?
 }
