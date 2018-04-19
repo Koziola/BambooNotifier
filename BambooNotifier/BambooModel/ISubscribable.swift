@@ -8,6 +8,7 @@
 
 import Foundation
 
-protocol ISubscribable {
+@objc protocol ISubscribable {
     var key : String { get }
+    var name : String { get }
 }

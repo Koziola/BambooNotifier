@@ -427,7 +427,7 @@
 				DEVELOPMENT_TEAM = C2SE2G379B;
 				INFOPLIST_FILE = BambooNotifier/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = koziola.BambooNotifier;
+				PRODUCT_BUNDLE_IDENTIFIER = koziola.BambooNotifierApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 			};
@@ -444,7 +444,7 @@
 				DEVELOPMENT_TEAM = C2SE2G379B;
 				INFOPLIST_FILE = BambooNotifier/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = koziola.BambooNotifier;
+				PRODUCT_BUNDLE_IDENTIFIER = koziola.BambooNotifierApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 			};

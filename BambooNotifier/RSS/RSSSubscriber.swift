@@ -13,13 +13,17 @@ class RSSSubscriber {
     let feedURL : URL
     private(set) var rssParser : FeedParser
     let refreshTimer : RefreshTimer?
+    let subscribable : ISubscribable
     var mostRecentRSSEntry : RSSFeedItem?
     
-    private init(feedURL : URL, refreshTimer : RefreshTimer){
+    static let NEW_RSS_NOTIFICATION = "RSSNotification"
+    
+    private init(feedURL : URL, refreshTimer : RefreshTimer, subscribable : ISubscribable){
         self.feedURL = feedURL
         self.refreshTimer = refreshTimer
         self.rssParser = FeedParser(URL: feedURL)!
         self.mostRecentRSSEntry = nil
+        self.subscribable = subscribable
         parseFromFeed()
         subscribeToRefresh()
     }
@@ -45,8 +49,6 @@ class RSSSubscriber {
         }
         
         let rssFeed = result.rssFeed!
-//        debugPrint("RSS INFO FOR TIME: \(Date.init())")
-//        debugPrint("Last content change timestamp: \(String(describing: rssFeed.lastBuildDate))")
         debugPrint("Count of items: \(String(describing: rssFeed.items?.count))")
         
         if let feedItems = rssFeed.items{
@@ -70,11 +72,20 @@ class RSSSubscriber {
         debugPrint("most recent entry pub date: \(newFeedItemPubDate)")
         if (newFeedItemPubDate > mostRecentEntryDate){
             debugPrint("New entry encountered.  Firing notification...")
-            //TODO: Fire notification here
+            fireUserNotification(feedItem: feedItem)
         } else {
             debugPrint("No new entry encountered.  Doing nothing.")
         }
         mostRecentRSSEntry = feedItem
+    }
+    
+    private func fireUserNotification(feedItem : RSSFeedItem){
+//        NotificationCenter.default.post(name: Notification.Name(RSSSubscriber.NEW_RSS_NOTIFICATION), object: feedItem)
+        let notification = NSUserNotification()
+        notification.title = subscribable.name
+        notification.informativeText = feedItem.title
+        notification.soundName = NSUserNotificationDefaultSoundName
+        NSUserNotificationCenter.default.deliver(notification)
     }
     
     private func subscribeToRefresh(){
@@ -84,19 +95,19 @@ class RSSSubscriber {
     @objc func doRefresh(_ sender: Any?){
         parseFromFeed()
     }
+//
+//    static func createSubscriber(feedURL : URL, refreshTimer : RefreshTimer) -> RSSSubscriber? {
+//        let subscriber = RSSSubscriber(feedURL: feedURL, refreshTimer: refreshTimer)
+//        return subscriber
+//    }
     
-    static func createSubscriber(feedURL : URL, refreshTimer : RefreshTimer) -> RSSSubscriber? {
-        let subscriber = RSSSubscriber(feedURL: feedURL, refreshTimer: refreshTimer)
-        return subscriber
-    }
-    
-    static func createBambooSubscriber(key : String, refreshTimer : RefreshTimer) -> RSSSubscriber?{
-        let urlString = "http://havokbamboo/rss/createAllBuildsRssFeed.action?feedType=rssAll&buildKey=\(key)"
+    static func createBambooSubscriber(subscribable : ISubscribable, refreshTimer : RefreshTimer) -> RSSSubscriber?{
+        let urlString = "http://havokbamboo/rss/createAllBuildsRssFeed.action?feedType=rssAll&buildKey=\(subscribable.key)"
         guard let url = URL(string: urlString) else{
             print("Error creating bamboo RSS subscriber URL.")
             return nil
         }
-        let subscriber = RSSSubscriber(feedURL: url, refreshTimer: refreshTimer)
+        let subscriber = RSSSubscriber(feedURL: url, refreshTimer: refreshTimer, subscribable: subscribable)
         return subscriber
     }
 }

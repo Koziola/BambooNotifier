@@ -35,7 +35,7 @@ class BambooPlan: NSObject, Decodable, ISubscribable {
     //name of the project the plan belongs to
     let projectName : String
     //Name of the plan
-    let buildName : String
+    let name : String
     //unique identifier for the plan
     let key : String
 
@@ -44,11 +44,20 @@ class BambooPlan: NSObject, Decodable, ISubscribable {
 
 //    //direct link to the plan
 //    let link : [BambooLink]
+    
+    enum CodingKeys: String, CodingKey{
+        case name = "buildName"
+        case projectKey
+        case projectName
+        case key
+        case branches
+    }
+    
     required init(from decoded: Decoder) throws {
         let rawResponse = try BambooPlanContainer(from: decoded)
         self.projectKey = rawResponse.projectKey
         self.projectName = rawResponse.projectName
-        self.buildName = rawResponse.buildName
+        self.name = rawResponse.buildName
         self.key = rawResponse.key
         self.branches = rawResponse.branches?.branchList
     }

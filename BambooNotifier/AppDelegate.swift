@@ -56,7 +56,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                     }
                     let changedIndex = (change![NSKeyValueChangeKey.indexesKey] as! NSIndexSet).firstIndex
                     let changedSub = notifierModel.subscriptions[changedIndex]
-                    AddSubscriberFeed(subKey: changedSub)
+                    AddSubscriberFeed(subscribable: changedSub)
                     break
                 case NSKeyValueChange.removal:
                     if prior == nil {
@@ -64,7 +64,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
                     }
                     let changedIndex = (change![NSKeyValueChangeKey.indexesKey] as! NSIndexSet).firstIndex
                     let changedSub = notifierModel.subscriptions[changedIndex]
-                    RemoveSubscriberFeed(subKey: changedSub)
+                    RemoveSubscriberFeed(subscribable: changedSub)
                     break
                 default:
                     debugPrint("No responder for change kind: \(changeKind)")
@@ -74,22 +74,22 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
-    private func AddSubscriberFeed(subKey : String){
-        guard let newRSSSubscriber = RSSSubscriber.createBambooSubscriber(key: subKey, refreshTimer: refreshTimer) else {
+    private func AddSubscriberFeed(subscribable : ISubscribable){
+        guard let newRSSSubscriber = RSSSubscriber.createBambooSubscriber(subscribable: subscribable, refreshTimer: refreshTimer) else {
             return
         }
-        feeds[subKey] = newRSSSubscriber
-        debugPrint("New subscriber added: \(subKey)")
+        feeds[subscribable.key] = newRSSSubscriber
+        debugPrint("New subscriber added: \(subscribable.name)")
     }
     
-    private func RemoveSubscriberFeed(subKey : String){
-        var existingSub = feeds.removeValue(forKey: subKey)
+    private func RemoveSubscriberFeed(subscribable: ISubscribable){
+        var existingSub = feeds.removeValue(forKey: subscribable.key)
         if existingSub == nil {
-            debugPrint("Unable to find existing subscriber for key \(subKey)")
+            debugPrint("Unable to find existing subscriber for key \(subscribable.key)")
             return
         }
         existingSub = nil
-         debugPrint("Subscriber successfully removed: \(subKey)")
+         debugPrint("Subscriber successfully removed: \(subscribable)")
     }
     
     private func addFeeds(){

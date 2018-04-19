@@ -22,7 +22,7 @@ class NotifierModel : NSObject {
     }
     
     var projectList : [BambooProject]
-    @objc dynamic var subscriptions : [String]
+    @objc dynamic var subscriptions : [ISubscribable]
     
     /*
     * Use a proxy for additions/removals because 'resizing' an array causes
@@ -32,12 +32,12 @@ class NotifierModel : NSObject {
     */
     func addSubscription(subscribable : ISubscribable){
         let proxy = mutableArrayValue(forKeyPath: #keyPath(subscriptions))
-        proxy.add(subscribable.key)
+        proxy.add(subscribable)
     }
     
     func removeSubscription(subscribable : ISubscribable){
         let proxy = mutableArrayValue(forKeyPath: #keyPath(subscriptions))
-        proxy.remove(subscribable.key)
+        proxy.remove(subscribable)
     }
     
     var selectedProject : BambooProject? {

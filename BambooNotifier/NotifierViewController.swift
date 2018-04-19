@@ -124,7 +124,7 @@ class NotifierViewController: NSViewController, NSBrowserDelegate {
     private func IsAlreadySubscribed(model: NotifierModel, subscribable : ISubscribable) -> Bool {
         return model.subscriptions.contains(where: {
             subscription in
-            if subscription == subscribable.key {
+            if subscription.key == subscribable.key {
                 return true
             }
             return false
@@ -241,7 +241,7 @@ class NotifierViewController: NSViewController, NSBrowserDelegate {
         case 1:
             let selectedProject = model.selectedProject
             let modelItem = selectedProject?.plans?[row]
-            browserCell.title = modelItem?.buildName ?? "No plan name"
+            browserCell.title = modelItem?.name ?? "No plan name"
             browserCell.isLeaf = (modelItem?.branches?.count ?? 0) == 0
         case 2:
             let selectedPlan = model.selectedPlan
