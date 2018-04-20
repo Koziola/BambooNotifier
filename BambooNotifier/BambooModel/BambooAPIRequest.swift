@@ -55,8 +55,10 @@ class BambooAPIRequest<Resource : BambooAPIResource>{
         subPath += jsonEXT
         components.path = subPath
         
+        components.queryItems = [URLQueryItem(name: "max-result", value: "9999")]
+        
         if resource.expandPath != nil {
-            components.queryItems = [URLQueryItem(name: "expand", value: resource.expandPath)]
+            components.queryItems?.append(URLQueryItem(name:"expand", value: resource.expandPath))
         }
         
         return components.url
