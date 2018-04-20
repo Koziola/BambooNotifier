@@ -147,7 +147,7 @@ class NotifierViewController: NSViewController, NSBrowserDelegate {
             print("now subscribing to \(selectedSubscribable.key)")
         } else {
             notifierModel?.removeSubscription(subscribable: selectedSubscribable)
-            print("unsubscribed to \(selectedSubscribable.key)")
+            print("unsubscribed from \(selectedSubscribable.key)")
         }
         handleSelectedPlanChanged()
     }

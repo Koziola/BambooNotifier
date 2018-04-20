@@ -55,7 +55,7 @@ class NotifierModel : NSObject {
     
     var currentlySelectedSubscribable : ISubscribable?{
         get{
-            return selectedPlan ?? selectedPlanBranch
+            return selectedPlanBranch ?? selectedPlan
         }
     }
     
