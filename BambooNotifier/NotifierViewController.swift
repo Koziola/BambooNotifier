@@ -111,15 +111,7 @@ class NotifierViewController: NSViewController, NSBrowserDelegate {
         } else{
             hidden = true
         }
-        
-//        if let selectedBranch = model.selectedPlanBranch{
-//            subscribed = IsAlreadySubscribed(model: model, subscribable: selectedBranch)
-//        } else if let selectedPlan = model.selectedPlan {
-//            subscribed = IsAlreadySubscribed(model: model, subscribable: selectedPlan)
-//        } else {
-//            hidden = true
-//        }
-        print("subscribe button is hidden: \(hidden)")
+
         DispatchQueue.main.async {
             if (subscribed){
                 self.subscribeButton.title = self.unsubscribeText
