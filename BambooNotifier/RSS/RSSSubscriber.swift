@@ -78,7 +78,6 @@ class RSSSubscriber {
     }
     
     private func fireUserNotification(feedItem : RSSFeedItem){
-//        NotificationCenter.default.post(name: Notification.Name(RSSSubscriber.NEW_RSS_NOTIFICATION), object: feedItem)
         let notification = NSUserNotification()
         notification.title = subscribable.name
         notification.informativeText = feedItem.title
@@ -93,11 +92,6 @@ class RSSSubscriber {
     @objc func doRefresh(_ sender: Any?){
         parseFromFeed()
     }
-//
-//    static func createSubscriber(feedURL : URL, refreshTimer : RefreshTimer) -> RSSSubscriber? {
-//        let subscriber = RSSSubscriber(feedURL: feedURL, refreshTimer: refreshTimer)
-//        return subscriber
-//    }
     
     static func createBambooSubscriber(subscribable : ISubscribable, refreshTimer : RefreshTimer) -> RSSSubscriber?{
         let urlString = "http://havokbamboo/rss/createAllBuildsRssFeed.action?feedType=rssAll&buildKey=\(subscribable.key)"
