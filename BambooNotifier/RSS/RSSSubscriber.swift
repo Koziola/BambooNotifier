@@ -60,6 +60,7 @@ class RSSSubscriber {
         guard let mostRecentEntryDate = mostRecentRSSEntry?.pubDate else{
             debugPrint("Most recent entry does not have a publication date.")
             mostRecentRSSEntry = feedItem
+            fireUserNotification(feedItem: feedItem)
             return
         }
         guard let newFeedItemPubDate = feedItem.pubDate else{
